@@ -3,19 +3,23 @@
 
 The following requirements are needed by this module:
 
-- [[requirement_argocd]] <<requirement_argocd,argocd>> (>= 6)
+- [[requirement_terraform]] <<requirement_terraform,terraform>> (>= 1.9.0)
 
-- [[requirement_null]] <<requirement_null,null>> (>= 3)
+- [[requirement_argocd]] <<requirement_argocd,argocd>> (~> 7.18)
 
-- [[requirement_utils]] <<requirement_utils,utils>> (>= 1)
+- [[requirement_azurerm]] <<requirement_azurerm,azurerm>> (~> 5.14)
+
+- [[requirement_null]] <<requirement_null,null>> (~> 3.3)
+
+- [[requirement_utils]] <<requirement_utils,utils>> (~> 2.7)
 
 === Providers
 
 The following providers are used by this module:
 
-- [[provider_null]] <<provider_null,null>> (>= 3)
+- [[provider_null]] <<provider_null,null>> (~> 3.3)
 
-- [[provider_azurerm]] <<provider_azurerm,azurerm>>
+- [[provider_azurerm]] <<provider_azurerm,azurerm>> (~> 5.14)
 
 === Modules
 
@@ -113,7 +117,7 @@ Description: Override of target revision of the application chart.
 
 Type: `string`
 
-Default: `"v2.11.0"`
+Default: `"v3.0.0"`
 
 ==== [[input_enable_service_monitor]] <<input_enable_service_monitor,enable_service_monitor>>
 
@@ -297,9 +301,11 @@ Description: List of cluster issuers created by cert-manager.
 [cols="a,a",options="header,autowidth"]
 |===
 |Name |Version
-|[[requirement_argocd]] <<requirement_argocd,argocd>> |>= 6
-|[[requirement_null]] <<requirement_null,null>> |>= 3
-|[[requirement_utils]] <<requirement_utils,utils>> |>= 1
+|[[requirement_terraform]] <<requirement_terraform,terraform>> |>= 1.9.0
+|[[requirement_argocd]] <<requirement_argocd,argocd>> |~> 7.18
+|[[requirement_azurerm]] <<requirement_azurerm,azurerm>> |~> 5.14
+|[[requirement_null]] <<requirement_null,null>> |~> 3.3
+|[[requirement_utils]] <<requirement_utils,utils>> |~> 2.7
 |===
 
 = Providers
@@ -307,8 +313,8 @@ Description: List of cluster issuers created by cert-manager.
 [cols="a,a",options="header,autowidth"]
 |===
 |Name |Version
-|[[provider_null]] <<provider_null,null>> |>= 3
-|[[provider_azurerm]] <<provider_azurerm,azurerm>> |n/a
+|[[provider_null]] <<provider_null,null>> |~> 3.3
+|[[provider_azurerm]] <<provider_azurerm,azurerm>> |~> 5.14
 |===
 
 = Modules
@@ -395,7 +401,7 @@ Description: List of cluster issuers created by cert-manager.
 |[[input_target_revision]] <<input_target_revision,target_revision>>
 |Override of target revision of the application chart.
 |`string`
-|`"v2.11.0"`
+|`"v3.0.0"`
 |no
 
 |[[input_enable_service_monitor]] <<input_enable_service_monitor,enable_service_monitor>>
