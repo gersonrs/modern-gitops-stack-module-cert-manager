@@ -16,9 +16,9 @@ data "azurerm_resource_group" "node_resource_group" {
 }
 
 resource "azurerm_user_assigned_identity" "cert_manager" {
+  name                = "cert-manager"
   resource_group_name = data.azurerm_resource_group.node_resource_group.name
   location            = data.azurerm_resource_group.node_resource_group.location
-  name                = "cert-manager"
 }
 
 data "azurerm_dns_zone" "this" {
@@ -33,12 +33,11 @@ resource "azurerm_role_assignment" "dns_zone_contributor" {
 }
 
 resource "azurerm_federated_identity_credential" "cert_manager" {
-  name                = "cert-manager"
-  resource_group_name = data.azurerm_resource_group.node_resource_group.name
-  audience            = ["api://AzureADTokenExchange"]
-  issuer              = var.cluster_oidc_issuer_url
-  parent_id           = azurerm_user_assigned_identity.cert_manager.id
-  subject             = "system:serviceaccount:cert-manager:cert-manager"
+  name                      = "cert-manager"
+  audience                  = ["api://AzureADTokenExchange"]
+  issuer                    = var.cluster_oidc_issuer_url
+  user_assigned_identity_id = azurerm_user_assigned_identity.cert_manager.id
+  subject                   = "system:serviceaccount:cert-manager:cert-manager"
 }
 
 module "cert-manager" {
