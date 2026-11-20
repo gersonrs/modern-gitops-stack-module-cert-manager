@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://github.com/gersonrs/modern-gitops-stack-module-cert-manager/compare/v2.11.0...v3.0.0) (2026-11-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* provider major bumps and a stricter Terraform baseline; consumers must run `terraform init -upgrade`.
+
+### 🚀 New Features
+
+* upgrade charts, providers and Terraform baseline ([#38](https://github.com/gersonrs/modern-gitops-stack-module-cert-manager/issues/38)) ([ad7ffa0](https://github.com/gersonrs/modern-gitops-stack-module-cert-manager/commit/ad7ffa0781ee7d99c75380fbada52615bc631c3b))
+
 ## [2.11.0](https://github.com/gersonrs/modern-gitops-stack-module-cert-manager/compare/v2.10.0...v2.11.0) (2026-07-12)
 
 
