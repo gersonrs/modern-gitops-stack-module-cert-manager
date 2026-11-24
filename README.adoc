@@ -1,23 +1,53 @@
 = modern-gitops-stack-module-cert-manager
 // Document attributes to replace along the document
-:cert-manager-chart-version: 1.14.4
-:chart-url: https://github.com/cert-manager/cert-manager/tree/master/deploy/charts/cert-manager
+:cert-manager-chart-version: v1.21.3
+:original-repo-url: https://github.com/cert-manager/cert-manager
 
-A https://modern-gitops-stack.io[Modern Gitops Stack] module for installing and configuring https://cert-manager.io/[cert-manager].
+A https://modern-gitops-stack.io[Modern GitOps Stack] module to deploy cert-manager, which automates the management and issuance of TLS certificates.
 
-The cert-manager chart used by this module is shipped in this repository as well, in order to avoid any unwanted behaviors caused by unsupported versions. 
+The cert-manager chart used by this module is shipped in this repository as well, in order to avoid any unwanted behaviors caused by unsupported versions.
 
 [cols="1,1,1",options="autowidth,header"]
 |===
 |Current Chart Version |Original Repository |Default Values
-|*{cert-manager-chart-version}* |{chart-url}[Chart] |https://artifacthub.io/packages/helm/cert-manager/cert-manager/{cert-manager-chart-version}?modal=values[`values.yaml`]
+|*v1.21.3* |https://github.com/cert-manager/cert-manager/tree/main/deploy/charts/cert-manager[cert-manager] |https://artifacthub.io/packages/helm/cert-manager/cert-manager/v1.21.3?modal=values[`values.yaml`]
 |===
 
-*Since this module is meant to be instantiated using its variants, the usage documentation is available in each variant* ( xref:./aks/README.adoc[AKS] | xref:./eks/README.adoc[EKS] | xref:./self-signed/README.adoc[Self-signed] ).
+== Usage
 
-Below you will only find the technical reference automatically generated from the `*.tf` files on the root module.
+This module can be declared by adding the following block to your Terraform configuration:
 
-== Technical Documentation
+[source,terraform]
+----
+module "cert-manager" {
+  source = "git::https://github.com/GersonRS/modern-gitops-stack-module-cert-manager.git?ref=<RELEASE>"
+
+  cluster_name   = local.cluster_name
+  base_domain    = local.base_domain
+  subdomain      = local.subdomain
+  cluster_issuer = local.cluster_issuer
+  app_autosync   = local.app_autosync
+
+  dependency_ids = {
+    argocd         = module.argocd.id
+    crds_bootstrap = module.crds_bootstrap.id
+  }
+}
+----
+
+The application is deployed to the `cert-manager` namespace.
+
+== Technical Reference
+
+=== Dependencies
+
+==== `module.argocd.id`
+
+Argo CD applies the application.
+
+==== `module.crds_bootstrap.id`
+
+cert-manager ships a ServiceMonitor, which needs the Prometheus Operator CRDs.
 
 // BEGIN_TF_DOCS
 === Requirements
