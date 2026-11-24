@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/gersonrs/modern-gitops-stack-module-cert-manager/compare/v3.0.0...v3.0.1) (2026-11-24)
+
+
+### 📚 Documentation
+
+* add usage and dependencies to the module documentation ([#40](https://github.com/gersonrs/modern-gitops-stack-module-cert-manager/issues/40)) ([fb450dd](https://github.com/gersonrs/modern-gitops-stack-module-cert-manager/commit/fb450dda9d2f50348297f6d562ab1dd8b6bc7db3))
+
 ## [3.0.0](https://github.com/gersonrs/modern-gitops-stack-module-cert-manager/compare/v2.11.0...v3.0.0) (2026-11-20)
 
 
